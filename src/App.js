@@ -155,7 +155,9 @@ const App = () => {
           return (
             <Button
               key={i}
-              className={btn === "=" ? "equals" : "" || btn === "AC" ? "ac" : "" || btn === "." ? "" : "" || btn === 0 ? "zero" : "" || typeof btn === "string" ? "symbol" : ""}
+              className={btn === "=" ? "equals" : "" || btn === "e" ? "operator" : "" || btn === "𝜋" ? "operator" : "" 
+              || btn === "log" ? "operator" : "" || btn === "ln" ? "operator" : "" ||  btn === "AC" ? "ac" : "" || btn === "." ? "" : "" || btn === 0 ? "zero" : "" 
+              || typeof btn === "string" ? "symbol" : ""  || btn === ex ? "operator" : "" }
               value={btn}
               onClick={
                 btn === "AC"

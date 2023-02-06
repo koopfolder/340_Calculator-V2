@@ -30,6 +30,9 @@ button:hover {
   grid-column: 2 / 4;
 }
 
+.operator {
+  background-color: #FEF5E4;
+}
 
 .equals:hover {
   background-color: #D9F8FF;
