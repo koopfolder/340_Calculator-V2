@@ -36,10 +36,6 @@ const removeSpaces = (num) => num.toString().replace(/\s/g, "");
 const math = (a, b, sign) =>
   sign === "+" ? a + b : sign === "-" ? a - b : sign === "×" ? a * b : a / b;
 
-const mathLog = (a, sign) => {
-  if (sign === "log") Math.log10(a);
-}
-
 const App = () => {
   let [calc, setCalc] = useState({
     sign: "",
@@ -72,6 +68,18 @@ const App = () => {
       num: 0,
       res: toLocaleString(
         Math.log10(calc.num)
+      ),
+    });
+  };
+
+  const lnClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      sign: "",
+      num: 0,
+      res: toLocaleString(
+        Math.log1p(calc.num-1)
       ),
     });
   };
@@ -124,8 +132,8 @@ const App = () => {
       res: !calc.num
         ? calc.res
         : !calc.res
-        ? calc.num
-        : toLocaleString(
+          ? calc.num
+          : toLocaleString(
             math(
               Number(removeSpaces(calc.res)),
               Number(removeSpaces(calc.num)),
@@ -144,12 +152,12 @@ const App = () => {
           calc.num === "0" && calc.sign === "÷"
             ? "Can't divide with 0"
             : toLocaleString(
-                math(
-                  Number(removeSpaces(calc.res)),
-                  Number(removeSpaces(calc.num)),
-                  calc.sign
-                )
-              ),
+              math(
+                Number(removeSpaces(calc.res)),
+                Number(removeSpaces(calc.num)),
+                calc.sign
+              )
+            ),
         sign: "",
         num: 0,
       });
@@ -230,53 +238,57 @@ const App = () => {
                   btn === "="
                     ? "equals"
                     : btn === "e"
-                    ? "operator"
-                    : btn === "𝜋"
-                    ? "operator"
-                    : btn === "log"
-                    ? "operator"
-                    : btn === "ln"
-                    ? "operator"
-                    : btn === "AC"
-                    ? "ac"
-                    : btn === "."
-                    ? ""
-                    : btn === 0
-                    ? "zero"
-                    : typeof btn === "string"
-                    ? "symbol"
-                    : btn === ex
-                    ? "operator"
-                    : ""
+                      ? "operator"
+                      : btn === "𝜋"
+                        ? "operator"
+                        : btn === "log"
+                          ? "operator"
+                          : btn === "ln"
+                            ? "operator"
+                            : btn === "AC"
+                              ? "ac"
+                              : btn === "."
+                                ? ""
+                                : btn === 0
+                                  ? "zero"
+                                  : typeof btn === "string"
+                                    ? "symbol"
+                                    : btn === ex
+                                      ? "operator"
+                                      : ""
                 }
                 value={btn}
                 onClick={
                   btn === "AC"
                     ? resetClickHandler
                     : btn === "+-"
-                    ? invertClickHandler
-                    : btn === "%"
-                    ? percentClickHandler
-                    : btn === "="
-                    ? equalsClickHandler
-                    : btn === "÷" || btn === "×" || btn === "-" || btn === "+"
-                    ? signClickHandler
-                    : btn === "𝜋"
-                    ? piClickHandler
-                    : btn === "e"
-                    ? eClickHandler
-                    : btn === ex
-                    ? exClickHandler
-                    : btn === "."
-                    ? comaClickHandler
-                    : numClickHandler
+                      ? invertClickHandler
+                      : btn === "%"
+                        ? percentClickHandler
+                        : btn === "="
+                          ? equalsClickHandler
+                          : btn === "÷" || btn === "×" || btn === "-" || btn === "+"
+                            ? signClickHandler
+                            : btn === "log"
+                              ? logClickHandler
+                              : btn === "ln"
+                                ? lnClickHandler
+                                : btn === ex
+                                  ? exClickHandler
+                                  : btn === "e"
+                                    ? eClickHandler
+                                    : btn === "𝜋"
+                                      ? piClickHandler
+                                      : btn === "."
+                                        ? comaClickHandler
+                                        : numClickHandler
                 }
               />
             );
           })}
         </ButtonBox>
       </Wrapper>
-      {toggleHistory ? <div className="history" style={{color: 'white'}}><h1>Recent History</h1></div> : null}
+      {toggleHistory ? <div className="history" style={{ color: 'white' }}><h1>Recent History</h1></div> : null}
     </div>
   );
 };
