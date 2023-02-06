@@ -36,6 +36,10 @@ const removeSpaces = (num) => num.toString().replace(/\s/g, "");
 const math = (a, b, sign) =>
   sign === "+" ? a + b : sign === "-" ? a - b : sign === "×" ? a * b : a / b;
 
+const mathLog = (a, sign) => {
+  if (sign === "log") Math.log10(a);
+}
+
 const App = () => {
   let [calc, setCalc] = useState({
     sign: "",
@@ -59,6 +63,18 @@ const App = () => {
   };
 
   // ----------------------------------v1
+
+  const logClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      sign: "",
+      num: 0,
+      res: toLocaleString(
+        Math.log10(calc.num)
+      ),
+    });
+  };
 
   const eClickHandler = (e) => {
     e.preventDefault();
