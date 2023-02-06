@@ -83,12 +83,9 @@ const App = () => {
     e.preventDefault();
     setCalc({
       ...calc,
-      res:
-          toLocaleString(
-              Math.pow(Math.E , calc.num)
-            ),
-        sign: "",
-        num: 0,
+      res: toLocaleString(Math.pow(Math.E, calc.num)),
+      sign: "",
+      num: 0,
     });
   };
 
@@ -186,81 +183,85 @@ const App = () => {
       />
     </svg>
   );
-  
+
   const [toggleHistory, setToggleHistory] = useState(false);
   return (
-    <Wrapper>
-      <button
-        style={{
-          display:'flex',
-          position: "absolute",
-          top: "93px",
-          left: "33px",
-          backgroundColor: "unset",
-          zIndex: "99",
-          padding:'5px'
-        }}
-        onClick={setToggleHistory(!toggleHistory)}
-      >
-        {iconHistoryClickHandler}
-      </button>
-      <Screen value={calc.num ? calc.num : calc.res} />
-      <ButtonBox>
-        {btnValues.flat().map((btn, i) => {
-          return (
-            <Button
-              key={i}
-              className={
-                btn === "="
-                  ? "equals"
-                  : btn === "e"
-                  ? "operator"
-                  : btn === "𝜋"
-                  ? "operator"
-                  : btn === "log"
-                  ? "operator"
-                  : btn === "ln"
-                  ? "operator"
-                  : btn === "AC"
-                  ? "ac"
-                  : btn === "."
-                  ? ""
-                  : btn === 0
-                  ? "zero"
-                  : typeof btn === "string"
-                  ? "symbol"
-                  : btn === ex
-                  ? "operator"
-                  : ""
-              }
-              value={btn}
-              onClick={
-                btn === "AC"
-                  ? resetClickHandler
-                  : btn === "+-"
-                  ? invertClickHandler
-                  : btn === "%"
-                  ? percentClickHandler
-                  : btn === "="
-                  ? equalsClickHandler
-                  : btn === "÷" || btn === "×" || btn === "-" || btn === "+"
-                  ? signClickHandler
-                  : btn === "𝜋"
-                  ? piClickHandler
-                  : btn === "e"
-                  ? eClickHandler
-                  : btn === ex
-                  ? exClickHandler
-                  : btn === "."
-                  ? comaClickHandler
-                  : numClickHandler
-              }
-            />
-          );
-        })}
-      </ButtonBox>
-    </Wrapper>
-
+    <div className="App">
+      <Wrapper>
+        <button
+          style={{
+            display: "flex",
+            position: "absolute",
+            top: "93px",
+            left: "33px",
+            backgroundColor: "unset",
+            zIndex: "99",
+            padding: "5px",
+          }}
+          onClick={() => {
+            setToggleHistory(!toggleHistory);
+          }}
+        >
+          {iconHistoryClickHandler}
+        </button>
+        <Screen value={calc.num ? calc.num : calc.res} />
+        <ButtonBox>
+          {btnValues.flat().map((btn, i) => {
+            return (
+              <Button
+                key={i}
+                className={
+                  btn === "="
+                    ? "equals"
+                    : btn === "e"
+                    ? "operator"
+                    : btn === "𝜋"
+                    ? "operator"
+                    : btn === "log"
+                    ? "operator"
+                    : btn === "ln"
+                    ? "operator"
+                    : btn === "AC"
+                    ? "ac"
+                    : btn === "."
+                    ? ""
+                    : btn === 0
+                    ? "zero"
+                    : typeof btn === "string"
+                    ? "symbol"
+                    : btn === ex
+                    ? "operator"
+                    : ""
+                }
+                value={btn}
+                onClick={
+                  btn === "AC"
+                    ? resetClickHandler
+                    : btn === "+-"
+                    ? invertClickHandler
+                    : btn === "%"
+                    ? percentClickHandler
+                    : btn === "="
+                    ? equalsClickHandler
+                    : btn === "÷" || btn === "×" || btn === "-" || btn === "+"
+                    ? signClickHandler
+                    : btn === "𝜋"
+                    ? piClickHandler
+                    : btn === "e"
+                    ? eClickHandler
+                    : btn === ex
+                    ? exClickHandler
+                    : btn === "."
+                    ? comaClickHandler
+                    : numClickHandler
+                }
+              />
+            );
+          })}
+        </ButtonBox>
+      </Wrapper>
+      {toggleHistory ? <div className="history" style={{color: 'white'}}><h1>Recent History</h1></div> : null}
+    </div>
   );
 };
 
