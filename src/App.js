@@ -6,11 +6,11 @@ import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
 
 const btnValues = [
-  ["AC", "+-", "%", "÷"],
-  [7, 8, 9, "×"],
-  [4, 5, 6, "-"],
-  [1, 2, 3, "+"],
-  [0, ".", "="],
+  ["log", "AC", "+-", "%", "÷"],
+  ["ln", 7, 8, 9, "×"],
+  ["e", 4, 5, 6, "-"],
+  ["ex", 1, 2, 3, "+"],
+  ["𝜋", 0, ".", "="],
 ];
 
 const toLocaleString = (num) =>
