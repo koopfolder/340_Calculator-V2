@@ -45,7 +45,6 @@ const App = () => {
 
   const piClickHandler = (e) => {
     e.preventDefault();
-    // const value = e.target.innerHTML;
       setCalc({
         ...calc,
         num:
@@ -53,7 +52,17 @@ const App = () => {
         ,
         res: !calc.sign ? 0 : calc.res,
       });
-    
+  };
+
+  const eClickHandler = (e) => {
+    e.preventDefault();
+      setCalc({
+        ...calc,
+        num:
+           toLocaleString(Number(removeSpaces("2.71828")))
+        ,
+        res: !calc.sign ? 0 : calc.res,
+      });
   };
 
   const comaClickHandler = (e) => {
@@ -157,6 +166,8 @@ const App = () => {
                   ? signClickHandler
                   : btn === "𝜋"
                   ? piClickHandler
+                  : btn === "e"
+                  ? eClickHandler
                   : btn === "."
                   ? comaClickHandler
                   : numClickHandler
