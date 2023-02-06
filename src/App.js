@@ -47,27 +47,27 @@ const App = () => {
     }
   };
 
-  const piClickHandler = (e) => {
-    e.preventDefault();
-      setCalc({
-        ...calc,
-        num:
-           toLocaleString(Number(removeSpaces("3.14159")))
-        ,
-        res: !calc.sign ? 0 : calc.res,
-      });
-  };
-
   const eClickHandler = (e) => {
     e.preventDefault();
-      setCalc({
-        ...calc,
+    setCalc({
+      ...calc,
         num:
-           toLocaleString(Number(removeSpaces("2.71828")))
+        toLocaleString(Number(removeSpaces("2.71828")))
         ,
         res: !calc.sign ? 0 : calc.res,
       });
-  };
+    };
+    
+    const piClickHandler = (e) => {
+      e.preventDefault();
+        setCalc({
+          ...calc,
+          num:
+             toLocaleString(Number(removeSpaces("3.14159")))
+          ,
+          res: !calc.sign ? 0 : calc.res,
+        });
+    };
 
   const comaClickHandler = (e) => {
     e.preventDefault();
