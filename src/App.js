@@ -73,13 +73,16 @@ const App = () => {
   };
 
   const exClickHandler = (e) => {
+    const value = e.target.innerHTML;
     e.preventDefault();
     setCalc({
       ...calc,
-      num:
-        toLocaleString(Number(removeSpaces(Math.E)))
-      ,
-      res: !calc.sign ? 0 : calc.res,
+      res:
+          toLocaleString(
+              Math.pow(Math.E , calc.num)
+            ),
+        sign: "",
+        num: 0,
     });
   };
 
