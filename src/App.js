@@ -32,7 +32,7 @@ const App = () => {
     res: 0,
   });
 
-  
+
   const numClickHandler = (e) => {
     e.preventDefault();
     const value = e.target.innerHTML;
@@ -160,9 +160,7 @@ const App = () => {
           return (
             <Button
               key={i}
-              className={btn === "=" ? "equals" : "" || btn === "e" ? "operator" : "" || btn === "𝜋" ? "operator" : "" 
-              || btn === "log" ? "operator" : "" || btn === "ln" ? "operator" : "" ||  btn === "AC" ? "ac" : "" || btn === "." ? "" : "" || btn === 0 ? "zero" : "" 
-              || typeof btn === "string" ? "symbol" : ""  || btn === ex ? "operator" : "" }
+              className={btn === "=" ? "equals" : btn === "e" ? "operator" : btn === "𝜋" ? "operator" : btn === "log" ? "operator" : btn === "ln" ? "operator" : btn === "AC" ? "ac" : btn === "." ? "" : btn === 0 ? "zero" : typeof btn === "string" ? "symbol" : btn === ex ? "operator" : ""}
               value={btn}
               onClick={
                 btn === "AC"
