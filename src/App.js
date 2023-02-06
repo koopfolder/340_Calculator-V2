@@ -181,7 +181,8 @@ const App = () => {
       />
     </svg>
   );
-
+  
+  const [toggleHistory, setToggleHistory] = useState(false);
   return (
     <Wrapper>
       <button
@@ -194,6 +195,7 @@ const App = () => {
           zIndex: "99",
           padding:'5px'
         }}
+        onClick={setToggleHistory(!toggleHistory)}
       >
         {iconHistoryClickHandler}
       </button>
@@ -253,6 +255,7 @@ const App = () => {
         })}
       </ButtonBox>
     </Wrapper>
+
   );
 };
 
