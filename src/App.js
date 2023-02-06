@@ -36,10 +36,6 @@ const removeSpaces = (num) => num.toString().replace(/\s/g, "");
 const math = (a, b, sign) =>
   sign === "+" ? a + b : sign === "-" ? a - b : sign === "×" ? a * b : a / b;
 
-function getBaseLog(x, y) {
-  return Math.log(y) / Math.log(x);
-}
-
 const App = () => {
   let [calc, setCalc] = useState({
     sign: "",
