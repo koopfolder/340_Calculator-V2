@@ -267,6 +267,8 @@ const App = () => {
                     ? eClickHandler
                     : btn === ex
                     ? exClickHandler
+                    : btn === "log"
+                    ? logClickHandler
                     : btn === "."
                     ? comaClickHandler
                     : numClickHandler
