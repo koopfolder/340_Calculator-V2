@@ -1,0 +1,9 @@
+{
+    "HistoryCal": {
+      "dbConfig": {
+        "host": "localhost",
+        "port": 5984,
+        "dbName": "mongodb+srv://admin:OIyfkRfGR2ynqm9g@calculatorsf340.zihxwyr.mongodb.net/?retryWrites=true&w=majority"
+      }
+    }
+  }
