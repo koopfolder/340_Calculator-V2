@@ -40,7 +40,9 @@ const math = (a, b, sign) =>
 const App = () => {
   // ------------------------- Connect API ---------------------------------
   const value = [];
+  const result = [];
   const [getValue, setGetValue] = useState([]);
+  const [getResult, setGetResult] = useState([]);
   const [toggle, setToggle] = useState(false);
 
   const historyHandle = (e) => {
@@ -51,16 +53,21 @@ const App = () => {
         respone.data.message.map((hist) => {
           return (
             value.push(hist.value),
+            result.push(hist.result),
             setGetValue(value),
+            setGetResult(result),
             console.log("value: " + value),
-            setToggle(!toggle)
+            console.log("result: " + result)
           );
         });
       })
       .catch(function (error) {
         console.error(error);
       });
+      setToggle(true);
   };
+
+
   // -------------------------End Connect API-------------------------------
 
   let [calc, setCalc] = useState({
@@ -245,7 +252,6 @@ const App = () => {
           onClick={historyHandle}
         >
           {iconHistoryClickHandler}
-          
         </button>
         <Screen value={calc.num ? calc.num : calc.res} />
         <ButtonBox>
@@ -308,10 +314,23 @@ const App = () => {
         </ButtonBox>
       </Wrapper>
       {toggle ? (
-        <div>
-          {getValue.map((x) => {
-            return <h1 style={{ color: "white" }}>value: {x}</h1>;
-          })}
+        <div
+          className="history"
+          style={{
+            display: "flex",
+            justifyContent: 'space-between',
+          }}
+        >
+          <div className="value">
+            {getValue.map((x, idx) => {
+              return <h1 key={idx} style={{ color: "white" }}>{x}</h1>;
+            })}
+          </div>
+          <div className="result">
+            {getResult.map((x, idx) => {
+              return <h1 key={idx} style={{ color: "white" }}>{x}</h1>;
+            })}
+          </div>
         </div>
       ) : null}
     </div>
