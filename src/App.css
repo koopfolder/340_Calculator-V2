@@ -15,3 +15,28 @@
   justify-content: center;
   background-color: #1E1E1E;
 }
+
+.historyCon {
+  position: absolute;
+  top: 850px;
+  width: 400px;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 25px;
+  /* z-index: 99; */
+}
+
+.historyCon .title {
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.history {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px;
+  border-radius: 25px;
+  background-color: #EBB3C2;
+}
+

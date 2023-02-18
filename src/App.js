@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import Wrapper from "./components/Wrapper";
 import Screen from "./components/Screen";
 import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
+import './App.css'
 
 const ex = (
   <svg
@@ -46,7 +46,7 @@ const App = () => {
   const [toggle, setToggle] = useState(false);
 
   const historyHandle = (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     axios
       .get("http://localhost:5000/history", { crossdomain: true })
       .then((respone) => {
@@ -64,7 +64,7 @@ const App = () => {
       .catch(function (error) {
         console.error(error);
       });
-      setToggle(true);
+      setToggle(!toggle);
   };
 
 
@@ -237,7 +237,7 @@ const App = () => {
   );
 
   return (
-    <div className="App">
+    <div>
       <Wrapper>
         <button
           style={{
@@ -314,22 +314,19 @@ const App = () => {
         </ButtonBox>
       </Wrapper>
       {toggle ? (
-        <div
-          className="history"
-          style={{
-            display: "flex",
-            justifyContent: 'space-between',
-          }}
-        >
-          <div className="value">
-            {getValue.map((x, idx) => {
-              return <h1 key={idx} style={{ color: "white" }}>{x}</h1>;
-            })}
-          </div>
-          <div className="result">
-            {getResult.map((x, idx) => {
-              return <h1 key={idx} style={{ color: "white" }}>{x}</h1>;
-            })}
+        <div className="historyCon">
+          <h1 className="title">Recent History</h1>
+          <div className="history">
+            <div className="value">
+              {getValue.map((x, idx) => {
+                return <h1 key={idx}>{x}</h1>;
+              })}
+            </div>
+            <div className="result">
+              {getResult.map((x, idx) => {
+                return <h1 key={idx}>{x}</h1>;
+              })}
+            </div>
           </div>
         </div>
       ) : null}
