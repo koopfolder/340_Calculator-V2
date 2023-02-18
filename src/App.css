@@ -8,35 +8,33 @@
   font-family: 'Inter', sans-serif;
 }
 .App {
-  text-align: center;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #1E1E1E;
+  height: auto;
 }
 
 .historyCon {
-  position: absolute;
-  top: 850px;
   width: 400px;
-  transform: translate(-50%, -50%);
   background-color: white;
   padding: 20px;
   border-radius: 25px;
-  /* z-index: 99; */
+  margin-bottom: 15vh;
 }
 
 .historyCon .title {
   text-align: right;
-  margin-bottom: 15px;
+  margin-bottom: 18px;
+  font-size: 32px;
+  padding-right: 8px;
+  font-weight: 500;
 }
 
-.history {
+.valueBox {
   display: flex;
   justify-content: space-between;
-  padding: 15px;
+  align-items: center;
   border-radius: 25px;
   background-color: #EBB3C2;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 

@@ -39,34 +39,39 @@ const math = (a, b, sign) =>
 
 const App = () => {
   // ------------------------- Connect API ---------------------------------
+
+  // const [getValue, setGetValue] = useState([]);
+  // const [getResult, setGetResult] = useState([]);
+  // const [getHistory, setGetHistory] = useState([[], []]);
   const value = [];
   const result = [];
-  const [getValue, setGetValue] = useState([]);
-  const [getResult, setGetResult] = useState([]);
+  const history = [];
+  const [getHistory, setGetHistory] = useState([]);
   const [toggle, setToggle] = useState(false);
 
   const historyHandle = (e) => {
-    // e.preventDefault();
+    e.preventDefault();
     axios
       .get("http://localhost:5000/history", { crossdomain: true })
       .then((respone) => {
-        respone.data.message.map((hist) => {
-          return (
-            value.push(hist.value),
-            result.push(hist.result),
-            setGetValue(value),
-            setGetResult(result),
-            console.log("value: " + value),
-            console.log("result: " + result)
-          );
-        });
+        for (let i = 0; i < respone.data.message.length; i++) {
+          value.push(respone.data.message[i].value);
+          result.push(respone.data.message[i].result);
+          history.push([
+            respone.data.message[i].value,
+            respone.data.message[i].result,
+          ]);
+          console.log("value: " + value);
+          console.log("result: " + result);
+          console.log("history: " + history);
+        }
+        return setGetHistory(history);
       })
       .catch(function (error) {
         console.error(error);
       });
-      setToggle(!toggle);
+    setToggle(!toggle);
   };
-
 
   // -------------------------End Connect API-------------------------------
 
@@ -237,16 +242,16 @@ const App = () => {
   );
 
   return (
-    <div>
+    <div className="App">
       <Wrapper>
         <button
           style={{
             display: "flex",
             position: "absolute",
-            top: "93px",
-            left: "33px",
+            top: "107px",
+            left: "26px",
             backgroundColor: "unset",
-            zIndex: "99",
+            // zIndex: "99",
             padding: "5px",
           }}
           onClick={historyHandle}
@@ -315,19 +320,21 @@ const App = () => {
       </Wrapper>
       {toggle ? (
         <div className="historyCon">
-          <h1 className="title">Recent History</h1>
-          <div className="history">
-            <div className="value">
-              {getValue.map((x, idx) => {
-                return <h1 key={idx}>{x}</h1>;
+          <p className="title">Recent History</p>
+              {getHistory.map((x, idx) => {
+                return (
+                  <div className="value"
+                    key={idx}
+                  >
+                    <div className="valueBox">
+
+                    <p>{x[0]}</p>
+                    <p>{x[1]}</p>
+                    </div>
+                  </div>
+                );
               })}
-            </div>
-            <div className="result">
-              {getResult.map((x, idx) => {
-                return <h1 key={idx}>{x}</h1>;
-              })}
-            </div>
-          </div>
+
         </div>
       ) : null}
     </div>
