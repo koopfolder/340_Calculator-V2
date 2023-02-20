@@ -81,6 +81,8 @@ const App = () => {
     res: 0,
   });
 
+  const num = ['']
+
   const numClickHandler = (e) => {
     e.preventDefault();
     const value = e.target.innerHTML;
@@ -94,6 +96,8 @@ const App = () => {
         res: !calc.sign ? 0 : calc.res,
       });
     }
+    num.push(calc.num + value)
+    console.log(num)
   };
 
   // ----------------------------------v1
@@ -175,6 +179,9 @@ const App = () => {
           ),
       num: 0,
     });
+
+    num.push(calc.sign)
+    console.log(num)
   };
 
   const equalsClickHandler = () => {
@@ -194,7 +201,36 @@ const App = () => {
         sign: "",
         num: 0,
       });
+      // console.log(calc.res)
+      // console.log(calc.sign)
+      // console.log(calc.num)
+      // console.log(math(
+      //   Number(removeSpaces(calc.res)),
+      //   Number(removeSpaces(calc.num)),
+      //   calc.sign
+      // ))
+      // console.log(calc.sign)
+      // console.log(calc.num)
     }
+
+    const obj = {
+      value: `${calc.res}`+`${calc.sign}`+`${calc.num}`,
+      result: math(
+        Number(removeSpaces(calc.res)),
+        Number(removeSpaces(calc.num)),
+        calc.sign
+      )
+    }
+    axios
+      .post("http://localhost:5000/history",
+        obj,
+      )
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const invertClickHandler = () => {
@@ -327,14 +363,12 @@ const App = () => {
                     key={idx}
                   >
                     <div className="valueBox">
-
                     <p>{x[0]}</p>
                     <p>{x[1]}</p>
                     </div>
                   </div>
                 );
               })}
-
         </div>
       ) : null}
     </div>
