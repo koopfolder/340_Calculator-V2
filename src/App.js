@@ -49,6 +49,10 @@ const App = () => {
   const [getHistory, setGetHistory] = useState([]);
   const [toggle, setToggle] = useState(false);
 
+  const createHis = (obj) => {
+    axios.post("http://localhost:5000/history", obj,)
+  }
+
   const historyHandle = (e) => {
     e.preventDefault();
     axios
@@ -61,9 +65,9 @@ const App = () => {
             respone.data.message[i].value,
             respone.data.message[i].result,
           ]);
-          console.log("value: " + value);
-          console.log("result: " + result);
-          console.log("history: " + history);
+          // console.log("value: " + value);
+          // console.log("result: " + result);
+          // console.log("history: " + history);
         }
         return setGetHistory(history);
       })
@@ -106,20 +110,31 @@ const App = () => {
     e.preventDefault();
     setCalc({
       ...calc,
-      sign: "",
+      sign: "log",
       num: 0,
       res: toLocaleString(Math.log10(calc.num)),
     });
+    const obj = {
+      value: `log ${calc.num}`,
+      result: `${Math.log10(calc.num)}`
+    }
+    createHis(obj);
   };
 
   const lnClickHandler = (e) => {
     e.preventDefault();
     setCalc({
       ...calc,
-      sign: "",
+      sign: "ln",
       num: 0,
       res: toLocaleString(Math.log1p(calc.num - 1)),
     });
+    // console.log(`num - `+calc.num+`\nsign - `+calc.sign+`\nres - `+calc.res);
+    const obj = {
+      value: `ln ${calc.num}`,
+      result: `${Math.log1p(calc.num - 1)}`
+    }
+    createHis(obj);
   };
 
   const eClickHandler = (e) => {
@@ -129,6 +144,11 @@ const App = () => {
       num: toLocaleString(Number(removeSpaces(Math.E))),
       res: !calc.sign ? 0 : calc.res,
     });
+    const obj = {
+      value: `e`,
+      result: `${Math.E}`
+    }
+    createHis(obj);
   };
 
   const piClickHandler = (e) => {
@@ -138,6 +158,11 @@ const App = () => {
       num: toLocaleString(Number(removeSpaces(Math.PI))),
       res: !calc.sign ? 0 : calc.res,
     });
+    const obj = {
+      value: `𝜋`,
+      result: `${Math.PI}`
+    }
+    createHis(obj);
   };
 
   const exClickHandler = (e) => {
@@ -148,6 +173,11 @@ const App = () => {
       sign: "",
       num: 0,
     });
+    const obj = {
+      value: `e^${calc.num}`,
+      result: `${Math.pow(Math.E, calc.num)}`
+    }
+    createHis(obj);
   };
 
   // ----------------------------------v1
@@ -204,13 +234,11 @@ const App = () => {
       // console.log(calc.res)
       // console.log(calc.sign)
       // console.log(calc.num)
-      // console.log(math(
+      // console.log(`math fn `+math(
       //   Number(removeSpaces(calc.res)),
       //   Number(removeSpaces(calc.num)),
       //   calc.sign
       // ))
-      // console.log(calc.sign)
-      // console.log(calc.num)
     }
 
     const obj = {
@@ -221,16 +249,8 @@ const App = () => {
         calc.sign
       )
     }
-    axios
-      .post("http://localhost:5000/history",
-        obj,
-      )
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    
+    createHis(obj);
   };
 
   const invertClickHandler = () => {
