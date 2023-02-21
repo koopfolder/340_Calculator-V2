@@ -28,13 +28,18 @@
 }
 
 .valueBox {
-  display: flex;
-  justify-content: space-between;
+  /* display: flex; */
+  /* justify-content: space-between; */
   align-items: center;
   border-radius: 25px;
   background-color: #EBB3C2;
   padding: 10px 20px;
   margin-bottom: 20px;
   font-size: 28px;
+}
+
+.result {
+  /* max-width: 200px; */
+  text-align: right;
 }
 

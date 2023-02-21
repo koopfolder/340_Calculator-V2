@@ -4,6 +4,7 @@ import Wrapper from "./components/Wrapper";
 import Screen from "./components/Screen";
 import ButtonBox from "./components/ButtonBox";
 import Button from "./components/Button";
+import { Textfit } from "react-textfit";
 import './App.css'
 
 const ex = (
@@ -144,11 +145,11 @@ const App = () => {
       num: toLocaleString(Number(removeSpaces(Math.E))),
       res: !calc.sign ? 0 : calc.res,
     });
-    const obj = {
-      value: `e`,
-      result: `${Math.E}`
-    }
-    createHis(obj);
+    // const obj = {
+    //   value: `e`,
+    //   result: `${Math.E}`
+    // }
+    // createHis(obj);
   };
 
   const piClickHandler = (e) => {
@@ -158,11 +159,11 @@ const App = () => {
       num: toLocaleString(Number(removeSpaces(Math.PI))),
       res: !calc.sign ? 0 : calc.res,
     });
-    const obj = {
-      value: `𝜋`,
-      result: `${Math.PI}`
-    }
-    createHis(obj);
+    // const obj = {
+    //   value: `𝜋`,
+    //   result: `${Math.PI}`
+    // }
+    // createHis(obj);
   };
 
   const exClickHandler = (e) => {
@@ -242,15 +243,17 @@ const App = () => {
     }
 
     const obj = {
-      value: `${calc.res}`+`${calc.sign}`+`${calc.num}`,
+      value: `${calc.res}${calc.sign}${calc.num}`,
       result: math(
         Number(removeSpaces(calc.res)),
         Number(removeSpaces(calc.num)),
         calc.sign
       )
     }
-    
-    createHis(obj);
+
+    if (obj.result !== null && obj.value !== '00'){
+      createHis(obj);
+    }
   };
 
   const invertClickHandler = () => {
@@ -379,16 +382,17 @@ const App = () => {
           <p className="title">Recent History</p>
               {getHistory.map((x, idx) => {
                 return (
-                  <div className="value"
+                  <div
                     key={idx}
                   >
                     <div className="valueBox">
-                    <p>{x[0]}</p>
-                    <p>{x[1]}</p>
+                    <Textfit mode="single" forceSingleModeWidth={false}>{x[0]}</Textfit>
+                    {/* <br></br> */}
+                    <Textfit className="result" mode="single" forceSingleModeWidth={false}>{x[1]}</Textfit>
                     </div>
                   </div>
                 );
-              })}
+              }).reverse()}
         </div>
       ) : null}
     </div>
