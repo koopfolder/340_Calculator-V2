@@ -379,7 +379,7 @@ const App = () => {
       </Wrapper>
       {toggle ? (
         <div className="historyCon">
-          <p className="title">Recent History</p>
+          <p className="title">Recent Historyasdasd</p>
               {getHistory.map((x, idx) => {
                 return (
                   <div
