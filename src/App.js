@@ -23,11 +23,11 @@ const ex = (
 );
 
 const btnValues = [
-  ["log", "AC", "+-", "%", "÷"],
-  ["ln", 7, 8, 9, "×"],
-  [ex, 4, 5, 6, "-"],
-  ["e", 1, 2, 3, "+"],
-  ["𝜋", 0, ".", "="],
+  ["sin","log", "AC", "+-", "%", "÷"],
+  ["cos","ln", 7, 8, 9, "×"],
+  ["tan",ex, 4, 5, 6, "-"],
+  ["1/x","e", 1, 2, 3, "+"],
+  ["√","𝜋", 0, ".", "="],
 ];
 
 const toLocaleString = (num) =>
@@ -276,6 +276,26 @@ const App = () => {
     });
   };
 
+  const sinClickHandler = () => {
+    
+  };
+
+  const cosClickHandler = () => {
+
+  };
+
+  const tanClickHandler = () => {
+    
+  };
+
+  const oneDivideXClickHandler = () => {
+    
+  };
+
+  const sqrtClickHandler = () => {
+
+  };
+
   const resetClickHandler = () => {
     setCalc({
       ...calc,
@@ -332,6 +352,16 @@ const App = () => {
                     ? "operator"
                     : btn === "log"
                     ? "operator"
+                    : btn === "sin"
+                    ? "operator"
+                    : btn === "cos"
+                    ? "operator"
+                    : btn === "tan"
+                    ? "operator"
+                    : btn === "1/x"
+                    ? "operator"
+                    : btn === "√"
+                    ? "operator"
                     : btn === "ln"
                     ? "operator"
                     : btn === "AC"
@@ -368,6 +398,16 @@ const App = () => {
                     ? eClickHandler
                     : btn === "𝜋"
                     ? piClickHandler
+                    : btn === "sin"
+                    ? sinClickHandler
+                    : btn === "cos"
+                    ? cosClickHandler
+                    : btn === "tan"
+                    ? tanClickHandler
+                    : btn === "1/x"
+                    ? oneDivideXClickHandler
+                    : btn === "√"
+                    ? sqrtClickHandler
                     : btn === "."
                     ? comaClickHandler
                     : numClickHandler
