@@ -276,24 +276,79 @@ const App = () => {
     });
   };
 
-  const sinClickHandler = () => {
-    
+  const sinClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      res: toLocaleString(Math.sin(calc.num)),
+      sign: "",
+      num: 0,
+    });
+    const obj = {
+      value: `sin(${calc.num})`,
+      result: `${Math.sin(calc.num)}`
+    }
+    createHis(obj);
   };
 
-  const cosClickHandler = () => {
-
+  const cosClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      res: toLocaleString(Math.cos(calc.num)),
+      sign: "",
+      num: 0,
+    });
+    const obj = {
+      value: `cos(${calc.num})`,
+      result: `${Math.cos(calc.num)}`
+    }
+    createHis(obj);
   };
 
-  const tanClickHandler = () => {
-    
+  const tanClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      res: toLocaleString(Math.tan(calc.num)),
+      sign: "",
+      num: 0,
+    });
+    const obj = {
+      value: `tan(${calc.num})`,
+      result: `${Math.tan(calc.num)}`
+    }
+    createHis(obj);
   };
 
-  const oneDivideXClickHandler = () => {
-    
+  const oneDivideXClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      res: toLocaleString(1 / calc.num),
+      sign: "",
+      num: 0,
+    });
+    const obj = {
+      value: `1/${calc.num}`,
+      result: `${1 / calc.num}`
+    }
+    createHis(obj);
   };
 
-  const sqrtClickHandler = () => {
-
+  const sqrtClickHandler = (e) => {
+    e.preventDefault();
+    setCalc({
+      ...calc,
+      res: toLocaleString(Math.sqrt(calc.num)),
+      sign: "",
+      num: 0,
+    });
+    const obj = {
+      value: `√${calc.num}`,
+      result: `${Math.sqrt(calc.num)}`
+    }
+    createHis(obj);
   };
 
   const resetClickHandler = () => {
